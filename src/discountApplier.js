@@ -8,6 +8,11 @@ const applier = {
     if (day % 7 === 3 || day === 25) return true;
     return false;
   },
+
+  dDayCheck: (day) => {
+    if (day <= 25 && day >= 1) return true;
+    return false;
+  },
 };
 
 export default applier;

@@ -30,8 +30,8 @@
 
 - [ ] 날짜에 해당하는 적용되는 할인혜택 확인하는 기능 #discountApplier
   - [x] 주말/평일 인지 확인하는 기능 #applier.weekendCheck
-  - [ ] 크리스마스 디데이 할인 기간인지 확인하는 기능 #applier.starCheck
-  - [ ] 특별 할인 기간인지 확인하는 기능
+  - [x] 크리스마스 디데이 할인 기간인지 확인하는 기능 #applier.dDayCheck
+  - [x] 특별 할인 기간인지 확인하는 기능 #applier.starCheck
 
 - [ ] 주문 메뉴의 종류와 수량을 파악하는 기능
 - [ ] 할인 전 총주문 금액 계산 기능
