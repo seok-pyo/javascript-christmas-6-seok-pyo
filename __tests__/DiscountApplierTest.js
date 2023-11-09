@@ -23,4 +23,11 @@ describe('날짜에 적용되는 할인 케이스를 확인한다', () => {
   ])('날짜에 별이 있으면 true를 반환한다', ({ input, result }) => {
     expect(applier.starCheck(input)).toBe(result);
   });
+
+  test.each([
+    { input: 1, result: true },
+    { input: 31, return: false },
+  ])('크리스마스 디데이 할인 기간인 경우 true를 반환', ({ input, result }) => {
+    expect(applier.dDayCheck(input)).toBe(result);
+  });
 });
