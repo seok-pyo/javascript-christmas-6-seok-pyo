@@ -1,0 +1,17 @@
+import applier from '../src/discountApplier.js';
+
+describe('날짜에 적용되는 할인 케이스를 확인한다', () => {
+  test.each([
+    { input: 1, result: true },
+    { input: 13, result: false },
+    { input: 15, result: true },
+    { input: 29, result: true },
+    { input: 30, result: true },
+    { input: 25, result: false },
+    { input: 31, result: false },
+    { input: 3, result: false },
+    { input: 2, result: true },
+  ])('날짜가 주말인 경우 true를 반환한다.', ({ input, result }) => {
+    expect(applier.weekend(input)).toBe(result);
+  });
+});
