@@ -15,6 +15,12 @@ const OutputView = {
     Console.print('\n<할인 전 총주문 금액>');
     Console.print(`${totalAmount}원`);
   },
+
+  printGift(price) {
+    Console.print('\n<증정 메뉴>');
+    if (price !== 0) Console.print('샴페인 1개');
+    else Console.print('없음');
+  },
 };
 
 export default OutputView;

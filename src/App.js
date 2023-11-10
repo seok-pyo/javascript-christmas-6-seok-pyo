@@ -12,7 +12,7 @@ class App {
     const totalAmount = server.getTotalPrice();
     OutputView.printTotalPrice(totalAmount);
     server.countDishes();
-    console.log(server.getBenefit()[3]);
+    OutputView.printGift(server.getBenefit()[3]);
   }
 }
 
