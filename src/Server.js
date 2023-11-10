@@ -1,4 +1,4 @@
-import menu from './menu.js';
+import Order from './Order.js';
 
 class Server {
   #order;
@@ -12,10 +12,10 @@ class Server {
   }
 
   makeOrder(input) {
-    return input.map((order) => {
-      const [name] = order;
-      const [price, category] = menu[name];
-      return [price, category];
+    input.forEach((orders) => {
+      const [name, quantity] = orders;
+      const order = new Order(name, quantity);
+      this.#order.push(order);
     });
   }
 }
