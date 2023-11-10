@@ -4,9 +4,9 @@ import OutputView from './OutputView.js';
 class App {
   async run() {
     const server = new Server();
-    await server.getDate();
+    const date = await server.getDate();
     await server.getOrder();
-    OutputView.printTitle();
+    OutputView.printTitle(date);
   }
 }
 

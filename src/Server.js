@@ -2,6 +2,7 @@ import Order from './Order.js';
 import discount from './discountApplier.js';
 import badge from './constants.js';
 import InputView from './InputView.js';
+import OutputView from './InputView.js';
 
 class Server {
   #order;
@@ -24,6 +25,7 @@ class Server {
 
   async getDate() {
     this.#date = await InputView.readDate();
+    return this.#date;
   }
 
   async getOrder() {
