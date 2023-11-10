@@ -57,6 +57,10 @@ class Server {
     this.#benefit = [dDay, weekendDiscount, special, giftEvent];
     return this.#benefit;
   }
+
+  getTotalBenefit() {
+    return this.#benefit.reduce((acc, cur) => acc + cur, 0);
+  }
 }
 
 export default Server;
