@@ -1,9 +1,9 @@
-class Menu {
+class Server {
   constructor() {};
 
-  make(input) {
+  getOrder(input) {
     return input.split(',').map((order) => order.split('-'));
   }
 }
 
-export default Menu;
+export default Server;
