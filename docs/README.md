@@ -28,10 +28,10 @@
 
 ### 기능 목록
 
-- [x] 날짜에 해당하는 적용되는 할인혜택 확인하는 기능 #discountApplier
-  - [x] 주말/평일 인지 확인하는 기능 #applier.weekendCheck
-  - [x] 크리스마스 디데이 할인 기간인지 확인하는 기능 #applier.dDayCheck
-  - [x] 특별 할인 기간인지 확인하는 기능 #applier.starCheck
+- [x] 날짜에 해당하는 적용되는 할인혜택 확인하는 기능 #discount
+  - [x] 주말/평일 인지 확인하는 기능 #discount.weekendCheck
+  - [x] 크리스마스 디데이 할인 기간인지 확인하는 기능 #discount.dDayCheck
+  - [x] 특별 할인 기간인지 확인하는 기능 #discount.starCheck
 
 - [ ] 주문 메뉴의 종류와 수량을 파악하는 기능 #Server
   - [x] 주문 메뉴와 수량을 배열로 변환한다. #Server.getOrder
@@ -39,13 +39,14 @@
     - [x] 주문 메뉴를 통해, 음식의 분류와 가격을 확인한다.
     - [x] 주문 메뉴를 저장할 수 있는 객체 필요 #Server.makeOrder
    
-- [ ] 할인 전 총주문 금액 계산 기능 #Server.getTotalPrice
+- [x] 할인 전 총주문 금액 계산 기능 #Server.getTotalPrice
 
-- [ ] 혜택 내역 계산 기능
-  - [ ] 크리스마스 디데이 할인 계산
+- [ ] 혜택 내역 계산 기능 #discount.applier
+  - [ ] 크리스마스 디데이 할인 계산 
   - [ ] 평일/주말 할인 계산
   - [ ] 특별 할인 계산
   - [ ] 증정 이벤트 여부에 따라 금액 표시
+  - [x] 메인과 디저트 주문 개수 구하기
 
 - [ ] 총혜택 금액 계산 기능
 - [ ] 할인 후 예상 결제 금액 계산 기능
