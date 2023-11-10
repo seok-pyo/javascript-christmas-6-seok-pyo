@@ -61,6 +61,10 @@ class Server {
   getTotalBenefit() {
     return this.#benefit.reduce((acc, cur) => acc + cur, 0);
   }
+
+  getFinalPrice() {
+    return this.#totalAmount - this.#benefit.splice(0, 3).reduce((acc, cur) => acc + cur);
+  }
 }
 
 export default Server;
