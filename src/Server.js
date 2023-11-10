@@ -43,6 +43,7 @@ class Server {
 
   getTotalPrice() {
     this.#totalAmount = this.#order.reduce((acc, order) => acc + order.getPrice(), 0);
+    return this.#totalAmount;
   }
 
   countDishes() {

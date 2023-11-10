@@ -10,6 +10,11 @@ const OutputView = {
     menu.forEach((order) => Console.print(`${order.getName()} ${order.getQuantity()
     }개`));
   },
+
+  printTotalPrice(totalAmount) {
+    Console.print('\n<할인 전 총주문 금액>');
+    Console.print(`${totalAmount}원`);
+  },
 };
 
 export default OutputView;

@@ -9,6 +9,10 @@ class App {
     OutputView.printTitle(date);
     const order = server.makeOrder(inputArray);
     OutputView.printMenu(order);
+    const totalAmount = server.getTotalPrice();
+    OutputView.printTotalPrice(totalAmount);
+    server.countDishes();
+    console.log(server.getBenefit()[3]);
   }
 }
 
