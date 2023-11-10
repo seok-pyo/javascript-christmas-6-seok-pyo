@@ -9,6 +9,10 @@ class Order extends Food {
     this.quantity = quantity;
   }
 
+  getName() {
+    return this.name;
+  }
+
   getPrice() {
     return (this.price * this.quantity);
   }

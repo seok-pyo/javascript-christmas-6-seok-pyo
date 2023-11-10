@@ -2,7 +2,6 @@ import Order from './Order.js';
 import discount from './discountApplier.js';
 import badge from './constants.js';
 import InputView from './InputView.js';
-import OutputView from './InputView.js';
 
 class Server {
   #order;
@@ -29,7 +28,8 @@ class Server {
   }
 
   async getOrder() {
-    this.#order = await InputView.readMenu();
+    const inputOrder = await InputView.readMenu();
+    return inputOrder;
   }
 
   makeOrder(input) {
@@ -38,6 +38,7 @@ class Server {
       const order = new Order(name, quantity);
       this.#order.push(order);
     });
+    return this.#order;
   }
 
   getTotalPrice() {

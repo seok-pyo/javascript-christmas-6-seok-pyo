@@ -5,8 +5,10 @@ class App {
   async run() {
     const server = new Server();
     const date = await server.getDate();
-    await server.getOrder();
+    const inputArray = await server.getOrder();
     OutputView.printTitle(date);
+    const order = server.makeOrder(inputArray);
+    OutputView.printMenu(order);
   }
 }
 
