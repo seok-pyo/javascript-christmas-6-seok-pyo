@@ -6,9 +6,15 @@ class Server {
 
   #countDish;
 
+  #totalAmount;
+
+  #benefit;
+
   constructor() {
     this.#order = [];
     this.#countDish = {};
+    this.#totalAmount = 0;
+    this.#benefit = {};
   }
 
   getOrder(input) {
@@ -24,11 +30,7 @@ class Server {
   }
 
   getTotalPrice() {
-    return this.#order.reduce((acc, order) => acc + order.getPrice(), 0);
-  }
-
-  getDiscount(day) {
-    return discount.applier(day);
+    this.#totalAmount = this.#order.reduce((acc, order) => acc + order.getPrice(), 0);
   }
 
   countDishes() {
@@ -41,8 +43,19 @@ class Server {
       if (orderItem.getCategory() === 'main') dish.main += Number(orderItem.getQuantity());
       else if (orderItem.getCategory() === 'dessert') dish.dessert += Number(orderItem.getQuantity());
     });
-
     this.#countDish = dish;
+  }
+
+  getBenefit(day) {
+    const { dDay, weekend, special, giftEvent } = discount.applier(day, this.#totalAmount);
+
+    let weekendDiscount = 0;
+
+    if (weekend) weekendDiscount += this.#countDish.main * 2023;
+    else weekendDiscount += this.#countDish.dessert * 2023;
+
+    this.#benefit = [dDay, weekendDiscount, special, giftEvent];
+    return this.#benefit;
   }
 }
 
