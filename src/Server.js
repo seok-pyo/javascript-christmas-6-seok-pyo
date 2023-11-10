@@ -18,6 +18,10 @@ class Server {
       this.#order.push(order);
     });
   }
+
+  getTotalPrice() {
+    return this.#order.reduce((acc, order) => acc + order.getPrice(), 0);
+  }
 }
 
 export default Server;

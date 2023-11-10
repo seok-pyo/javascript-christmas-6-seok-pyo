@@ -8,6 +8,10 @@ class Order extends Food {
     this.price = price;
     this.quantity = quantity;
   }
+
+  getPrice() {
+    return (this.price * this.quantity);
+  }
 }
 
 export default Order;
