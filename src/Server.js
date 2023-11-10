@@ -26,8 +26,8 @@ class Server {
     this.#date = await InputView.readDate();
   }
 
-  getOrder(input) {
-    return input.split(',').map((order) => order.split('-'));
+  async getOrder() {
+    this.#order = await InputView.readMenu();
   }
 
   makeOrder(input) {
