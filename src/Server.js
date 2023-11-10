@@ -1,5 +1,6 @@
 import Order from './Order.js';
 import discount from './discountApplier.js';
+import badge from './constants.js';
 
 class Server {
   #order;
@@ -64,6 +65,12 @@ class Server {
 
   getFinalPrice() {
     return this.#totalAmount - this.#benefit.splice(0, 3).reduce((acc, cur) => acc + cur);
+  }
+
+  getBadge() {
+    if (this.getTotalBenefit() >= 20000) return badge.santa;
+    if (this.getTotalBenefit() >= 10000) return badge.tree;
+    if (this.getTotalBenefit() >= 5000) return badge.star;
   }
 }
 
