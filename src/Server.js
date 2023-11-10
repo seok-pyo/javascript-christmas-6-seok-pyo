@@ -1,6 +1,7 @@
 import Order from './Order.js';
 import discount from './discountApplier.js';
 import badge from './constants.js';
+import InputView from './InputView.js';
 
 class Server {
   #order;
@@ -11,11 +12,18 @@ class Server {
 
   #benefit;
 
+  #date;
+
   constructor() {
     this.#order = [];
     this.#countDish = {};
     this.#totalAmount = 0;
     this.#benefit = {};
+    this.#date = 0;
+  }
+
+  async getDate() {
+    this.#date = await InputView.readDate();
   }
 
   getOrder(input) {
