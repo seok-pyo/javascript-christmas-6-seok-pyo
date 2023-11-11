@@ -63,3 +63,12 @@
 - [ ] 총혜택 금액 출력
 - [ ] 할인 후 예상 결제 금액 출력
 - [ ] 12월 이벤트 배지 출력
+
+### 리팩토링 내역
+- [ ] server 클래스 분리
+  - [ ] calculator utils 생성
+    - [ ] getTotalPrice
+    - [ ] countDish
+    - [ ] getBenefit
+    - [ ] getFinalPrice
+    - [ ] getbadge
