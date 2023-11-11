@@ -21,6 +21,12 @@ const OutputView = {
     if (price !== 0) Console.print('샴페인 1개');
     else Console.print('없음');
   },
+
+  printBenefit(total, weekend) {
+    Console.print('\n<혜택 내역>');
+    if (!weekend) Console.print(`크리스마스 디데이 할인: -${total[0].toLocaleString()}원\n평일 할인: -${total[1]}원\n특별 할인: -${total[2]}원\n증정 이벤트: -${total[3]}원`);
+    else Console.print(`크리스마스 디데이 할인: -${total[0]}원\n주말 할인: -${total[1]}원\n특별 할인: -${total[2]}원\n증정 이벤트: -${total[3]}원`);
+  },
 };
 
 export default OutputView;

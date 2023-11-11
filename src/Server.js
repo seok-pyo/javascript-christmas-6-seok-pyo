@@ -20,6 +20,7 @@ class Server {
     this.#totalAmount = 0;
     this.#benefit = {};
     this.#date = 0;
+    this.weekend = false;
   }
 
   async getDate() {
@@ -61,6 +62,8 @@ class Server {
 
   getBenefit(day) {
     const { dDay, weekend, special, giftEvent } = discount.applier(day, this.#totalAmount);
+
+    this.weekend = weekend;
 
     let weekendDiscount = 0;
 

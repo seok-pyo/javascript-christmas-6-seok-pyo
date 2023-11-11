@@ -1,24 +1,21 @@
-import menu from './menu.js';
 import Food from './Food.js';
 
 class Order extends Food {
   constructor(name, quantity) {
-    const [price, category] = menu[name] || [null, null];
-    super(name, category);
-    this.price = price;
+    super(name);
     this.quantity = quantity;
   }
 
   getName() {
-    return this.name;
+    return super.getName();
   }
 
   getPrice() {
-    return (this.price * this.quantity);
+    return (super.getPrice() * this.quantity);
   }
 
   getCategory() {
-    return this.category;
+    return super.getCategory();
   }
 
   getQuantity() {
