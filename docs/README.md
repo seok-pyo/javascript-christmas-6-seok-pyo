@@ -66,9 +66,9 @@
 
 ### 리팩토링 내역
 - [ ] server 클래스 분리
-  - [ ] calculator utils 생성
+  - [x] calculator utils 생성
     - [x] getTotalPrice
     - [x] countDish
     - [x] getBenefit
-    - [ ] getFinalPrice
-    - [ ] getbadge
+    - [x] getFinalPrice
+    - [x] getbadge
