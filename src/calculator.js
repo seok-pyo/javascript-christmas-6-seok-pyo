@@ -1,5 +1,5 @@
 import discount from './discountApplier.js';
-import badge from './constants.js';
+import { badge } from './constants.js';
 
 const calculator = {
   totalPrice(orderList) {
@@ -28,12 +28,12 @@ const calculator = {
       giftEvent,
     } = discount.applier(day, totalPrice);
 
-    let weekendDiscount = 0;
+    let weekDiscount = 0;
 
-    if (weekend) weekendDiscount += dish.main * 2023;
-    else weekendDiscount += dish.dessert * 2023;
+    if (weekend) weekDiscount += dish.main * 2023;
+    else weekDiscount += dish.dessert * 2023;
 
-    return [dDay, weekendDiscount, special, giftEvent];
+    return [dDay, weekDiscount, special, giftEvent, weekend];
   },
 
   totalBenefit(benefitList) {

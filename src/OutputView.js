@@ -22,10 +22,18 @@ const OutputView = {
     else Console.print('없음');
   },
 
-  printBenefit(total, weekend) {
+  printBenefit(total) {
+    const [dDay, weekDiscount, special, giftEvent, weekend] = total;
     Console.print('\n<혜택 내역>');
-    if (!weekend) Console.print(`크리스마스 디데이 할인: -${total[0].toLocaleString()}원\n평일 할인: -${total[1]}원\n특별 할인: -${total[2]}원\n증정 이벤트: -${total[3]}원`);
-    else Console.print(`크리스마스 디데이 할인: -${total[0]}원\n주말 할인: -${total[1]}원\n특별 할인: -${total[2]}원\n증정 이벤트: -${total[3]}원`);
+    if (!dDay && !weekDiscount && !special && !giftEvent) Console.print('없음');
+
+    if (dDay) Console.print(`크리스마스 디데이 할인: -${dDay.toLocaleString()}원`);
+
+    if (weekend) Console.print(`주말 할인: -${weekDiscount.toLocaleString()}원`);
+    if (!weekend) Console.print(`평일 할인: -${weekDiscount.toLocaleString()}원`);
+
+    if (special) Console.print(`특별 할인: -${special.toLocaleString()}원`);
+    if (giftEvent) Console.print(`증정 이벤트: -${giftEvent.toLocaleString()}원`);
   },
 
   printTotalBenefit(benefit) {

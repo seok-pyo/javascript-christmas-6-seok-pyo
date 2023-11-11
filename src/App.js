@@ -4,7 +4,9 @@ import OutputView from './OutputView.js';
 class App {
   async run() {
     const server = new Server();
+
     const date = await server.getDate();
+
     const inputArray = await server.getOrder();
 
     OutputView.printTitle(date);
@@ -23,7 +25,7 @@ class App {
 
     OutputView.printGift(benefit[3]);
 
-    OutputView.printBenefit(benefit, server.weekend);
+    OutputView.printBenefit(benefit);
 
     OutputView.printTotalBenefit(server.getTotalBenefit());
 
