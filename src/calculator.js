@@ -1,5 +1,5 @@
 import discount from './discountApplier.js';
-import { badge } from './constants.js';
+import { BADGE } from './constants.js';
 
 const calculator = {
   totalPrice(orderList) {
@@ -46,9 +46,9 @@ const calculator = {
   },
 
   badge(totalPrice) {
-    if (totalPrice >= 20000) return badge.santa;
-    if (totalPrice >= 10000) return badge.tree;
-    if (totalPrice >= 5000) return badge.star;
+    if (totalPrice >= 20000) return BADGE.SANTA;
+    if (totalPrice >= 10000) return BADGE.TREE;
+    if (totalPrice >= 5000) return BADGE.STAR;
   },
 };
 

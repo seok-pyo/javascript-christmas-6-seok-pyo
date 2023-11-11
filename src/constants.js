@@ -1,7 +1,7 @@
-const badge = {
-  star: '별',
-  tree: '트리',
-  santa: '산타',
+const BADGE = {
+  STAR: '별',
+  TREE: '트리',
+  SANTA: '산타',
 };
 
 const MESSEAGE = {
@@ -9,4 +9,4 @@ const MESSEAGE = {
   MENU: '주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)\n',
 };
 
-export { badge, MESSEAGE };
+export { BADGE, MESSEAGE };
