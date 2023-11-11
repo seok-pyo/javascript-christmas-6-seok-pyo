@@ -61,7 +61,12 @@ class Server {
   }
 
   getBenefit(day) {
-    const { dDay, weekend, special, giftEvent } = discount.applier(day, this.#totalAmount);
+    const {
+      dDay,
+      weekend,
+      special,
+      giftEvent,
+    } = discount.applier(day, this.#totalAmount);
 
     this.weekend = weekend;
 
