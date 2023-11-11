@@ -7,7 +7,7 @@ class Server {
 
   #countDish;
 
-  #totalAmount;
+  #totalPrice;
 
   #benefit;
 
@@ -16,10 +16,9 @@ class Server {
   constructor() {
     this.#order = [];
     this.#countDish = {};
-    this.#totalAmount = 0;
+    this.#totalPrice = 0;
     this.#benefit = {};
     this.#date = 0;
-    this.weekend = false;
   }
 
   async getDate() {
@@ -42,15 +41,17 @@ class Server {
   }
 
   getTotalPrice() {
-    return calculator.totalPrice(this.#order);
+    this.#totalPrice = calculator.totalPrice(this.#order);
+    return this.#totalPrice;
   }
 
   countDishes() {
     this.#countDish = calculator.countDishes(this.#order);
   }
 
-  getBenefit() {
-    return calculator.benefit(this.#date, this.#totalAmount, this.#countDish);
+  getBenefit(date) {
+    this.#benefit = calculator.benefit(date, this.#totalPrice, this.#countDish);
+    return this.#benefit;
   }
 
   getTotalBenefit() {
@@ -58,7 +59,7 @@ class Server {
   }
 
   getFinalPrice() {
-    return calculator.finalPrice(this.#totalAmount, this.#benefit);
+    return calculator.finalPrice(this.#totalPrice, this.#benefit);
   }
 
   getBadge() {
