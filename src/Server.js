@@ -62,8 +62,8 @@ class Server {
     return calculator.finalPrice(this.#totalPrice, this.#benefit);
   }
 
-  getBadge() {
-    return calculator.badge();
+  getBadge(totalPrice) {
+    return calculator.badge(totalPrice);
   }
 }
 

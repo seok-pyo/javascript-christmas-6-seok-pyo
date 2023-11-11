@@ -41,15 +41,14 @@ const calculator = {
   },
 
   finalPrice(totalPrice, benefitList) {
-    return totalPrice - calculator.totalBenefit + benefitList[benefitList.length - 1];
+    const discountAmount = benefitList.slice(0, 3).reduce((amount, benefit) => amount + benefit, 0);
+    return totalPrice - discountAmount;
   },
 
-  badge() {
-    const totalBenefit = calculator.totalBenefit();
-
-    if (totalBenefit >= 20000) return badge.santa;
-    if (calculator.totalBenefit() >= 10000) return badge.tree;
-    if (calculator.totalBenefit() >= 5000) return badge.star;
+  badge(totalPrice) {
+    if (totalPrice >= 20000) return badge.santa;
+    if (totalPrice >= 10000) return badge.tree;
+    if (totalPrice >= 5000) return badge.star;
   },
 };
 

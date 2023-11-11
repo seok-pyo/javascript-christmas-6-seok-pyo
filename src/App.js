@@ -13,9 +13,9 @@ class App {
 
     OutputView.printMenu(order);
 
-    const totalAmount = server.getTotalPrice();
+    const totalPrice = server.getTotalPrice();
 
-    OutputView.printTotalPrice(totalAmount);
+    OutputView.printTotalPrice(totalPrice);
 
     server.countDishes();
 
@@ -24,6 +24,12 @@ class App {
     OutputView.printGift(benefit[3]);
 
     OutputView.printBenefit(benefit, server.weekend);
+
+    OutputView.printTotalBenefit(server.getTotalBenefit());
+
+    OutputView.printFinalPrice(server.getFinalPrice());
+
+    OutputView.printBadge(server.getBadge(totalPrice));
   }
 }
 
