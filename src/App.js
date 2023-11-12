@@ -31,7 +31,7 @@ class App {
 
     OutputView.printFinalPrice(server.getFinalPrice());
 
-    OutputView.printBadge(server.getBadge(totalPrice));
+    OutputView.printBadge(server.getBadge(server.getTotalBenefit()));
   }
 }
 

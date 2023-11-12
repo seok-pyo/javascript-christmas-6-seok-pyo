@@ -45,10 +45,11 @@ const calculator = {
     return totalPrice - discountAmount;
   },
 
-  badge(totalPrice) {
-    if (totalPrice >= 20000) return BADGE.SANTA;
-    if (totalPrice >= 10000) return BADGE.TREE;
-    if (totalPrice >= 5000) return BADGE.STAR;
+  badge(totalBenefit) {
+    if (totalBenefit === 0) return '없음';
+    if (totalBenefit >= 20000) return BADGE.SANTA;
+    if (totalBenefit >= 10000) return BADGE.TREE;
+    if (totalBenefit >= 5000) return BADGE.STAR;
   },
 };
 
