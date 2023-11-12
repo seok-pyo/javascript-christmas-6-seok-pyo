@@ -1,69 +1,63 @@
-import Order from './Order.js';
-import InputView from './InputView.js';
-import calculator from './calculator.js';
-
 class Server {
   #order;
 
-  #countDish;
-
-  #totalPrice;
-
-  #benefit;
-
   #date;
 
-  constructor() {
+  #calculator;
+
+  #inputView;
+
+  #Order;
+
+  constructor(InputView, calculator, Order) {
     this.#order = [];
-    this.#countDish = {};
-    this.#totalPrice = 0;
-    this.#benefit = {};
-    this.#date = 0;
+    this.#date = null;
+    this.#inputView = InputView;
+    this.#calculator = calculator;
+    this.#Order = Order;
   }
 
   async getDate() {
-    this.#date = await InputView.readDate();
+    this.#date = await this.#inputView.readDate();
     return this.#date;
   }
 
   async getOrder() {
-    const inputOrder = await InputView.readMenu();
+    const inputOrder = await this.#inputView.readMenu();
     return inputOrder;
   }
 
   makeOrder(input) {
     input.forEach((orders) => {
       const [name, quantity] = orders;
-      const order = new Order(name, quantity);
+      const order = new this.#Order(name, quantity);
       this.#order.push(order);
     });
     return this.#order;
   }
 
   getTotalPrice() {
-    this.#totalPrice = calculator.totalPrice(this.#order);
-    return this.#totalPrice;
+    return this.#calculator.totalPrice(this.#order);
   }
 
   countDishes() {
-    this.#countDish = calculator.countDishes(this.#order);
+    return this.#calculator.countDishes(this.#order);
   }
 
-  getBenefit(date) {
-    this.#benefit = calculator.benefit(date, this.#totalPrice, this.#countDish);
-    return this.#benefit;
+  getBenefit(date, totalPrice, dishes) {
+    return this.#calculator.benefit(date, totalPrice, dishes);
   }
 
-  getTotalBenefit() {
-    return calculator.totalBenefit(this.#benefit);
+  getTotalBenefit(benefit) {
+    return this.#calculator.totalBenefit(benefit);
   }
 
-  getFinalPrice() {
-    return calculator.finalPrice(this.#totalPrice, this.#benefit);
+  getFinalPrice(totalPrice, benefit) {
+    return this.#calculator.finalPrice(totalPrice, benefit);
   }
 
-  getBadge(totalPrice) {
-    return calculator.badge(totalPrice);
+  getBadge(totalBenefit) {
+    return this.#calculator.badge(totalBenefit);
   }
 }
 

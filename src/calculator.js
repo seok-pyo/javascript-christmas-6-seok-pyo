@@ -46,7 +46,7 @@ const calculator = {
   },
 
   badge(totalBenefit) {
-    if (totalBenefit === 0) return '없음';
+    if (totalBenefit < 5000) return '없음';
     if (totalBenefit >= 20000) return BADGE.SANTA;
     if (totalBenefit >= 10000) return BADGE.TREE;
     if (totalBenefit >= 5000) return BADGE.STAR;
