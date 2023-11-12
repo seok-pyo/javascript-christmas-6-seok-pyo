@@ -19,16 +19,20 @@ const validate = {
 
   check(menuArray) {
     const reg = /[^0-9]/;
+    const menuName = [];
 
     menuArray.forEach((oneMenu) => {
       const [name, quantity] = oneMenu;
       if (!validate.checkMenuName(name)) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
       if (reg.test(quantity)) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      menuName.push(name);
     });
+    if (menuName.length !== new Set(menuName).size) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
   },
 
   menu(input) {
-    const menuArray = input.split(',').map((order) => order.split('-'));
+    const deleteSpace = /\s/g;
+    const menuArray = input.replace(deleteSpace, '').split(',').map((order) => order.split('-'));
     validate.check(menuArray);
 
     return menuArray;
