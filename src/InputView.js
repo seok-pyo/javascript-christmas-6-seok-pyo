@@ -11,7 +11,7 @@ const InputView = {
       validate.date(input);
     } catch (error) {
       Console.print(error.message);
-      await InputView.readDate();
+      input = await InputView.readDate();
     }
 
     return input;
@@ -22,11 +22,13 @@ const InputView = {
 
     try {
       input = await Console.readLineAsync(MESSEAGE.MENU);
+      const validateMenu = validate.menu(input);
+      return validateMenu;
     } catch (error) {
       Console.print(error.message);
+      input = await InputView.readMenu();
+      return input;
     }
-
-    return input.split(',').map((order) => order.split('-'));
   },
 };
 
