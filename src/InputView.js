@@ -1,4 +1,5 @@
 import { MESSEAGE } from './constants.js';
+import validate from './validation.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const InputView = {
@@ -7,7 +8,7 @@ const InputView = {
 
     try {
       input = await Console.readLineAsync(MESSEAGE.VISIT);
-      // if (input === '3') throw new Error('test');
+      validate.date(input);
     } catch (error) {
       Console.print(error.message);
       await InputView.readDate();
