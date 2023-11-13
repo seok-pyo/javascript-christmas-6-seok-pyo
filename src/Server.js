@@ -27,6 +27,10 @@ class Server {
     return inputOrder;
   }
 
+  deleteOrder() {
+    this.#order.length = 0;
+  }
+
   makeOrder(input) {
     input.forEach((orders) => {
       const [name, quantity] = orders;

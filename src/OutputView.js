@@ -51,6 +51,10 @@ const OutputView = {
     Console.print('\n<12월 이벤트 배지>');
     Console.print(badge);
   },
+
+  printNotice() {
+    Console.print('\n[이벤트 안내] 10,000원 이상부터 이벤트가 적용됩니다.\n');
+  },
 };
 
 export default OutputView;

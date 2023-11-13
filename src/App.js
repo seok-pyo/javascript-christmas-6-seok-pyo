@@ -16,11 +16,13 @@ class App {
 
     const dishes = server.countDishes();
 
+    let totalPrice = server.getTotalPrice();
+
+    totalPrice = await this.repeat(server, inputArray, order, dishes, totalPrice);
+
     OutputView.printTitle(date);
 
     OutputView.printMenu(order);
-
-    const totalPrice = server.getTotalPrice();
 
     OutputView.printTotalPrice(totalPrice);
 
@@ -35,6 +37,23 @@ class App {
     OutputView.printFinalPrice(server.getFinalPrice(totalPrice, benefit));
 
     OutputView.printBadge(server.getBadge(server.getTotalBenefit(benefit)));
+  }
+
+  async repeat(server, inputArray, order, dishes, totalPrice) {
+    if (totalPrice < 10_000) {
+      OutputView.printNotice();
+      const input = await InputView.askJoin();
+
+      if (input === '1') {
+        server.deleteOrder();
+        inputArray = await server.getOrder();
+        order = server.makeOrder(inputArray);
+        dishes = server.countDishes();
+        totalPrice = server.getTotalPrice();
+        await this.repeat(server, inputArray, order, dishes, totalPrice);
+      }
+    }
+    return totalPrice;
   }
 }
 

@@ -30,6 +30,11 @@ const InputView = {
       return input;
     }
   },
+
+  async askJoin() {
+    const input = await Console.readLineAsync('다시 입력하시려면 1을 그대로 진행하시려면 2를 눌러주세요.\n');
+    return input;
+  },
 };
 
 export default InputView;
