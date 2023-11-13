@@ -41,7 +41,7 @@ const calculator = {
   },
 
   totalBenefit(benefitList) {
-    return benefitList.reduce((totalBenefit, benefit) => totalBenefit + benefit, 0);
+    return benefitList.slice(0, 4).reduce((totalBenefit, benefit) => totalBenefit + benefit, 0);
   },
 
   finalPrice(totalPrice, benefitList) {

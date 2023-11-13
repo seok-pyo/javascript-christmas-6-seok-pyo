@@ -13,7 +13,7 @@ const OutputView = {
 
   printTotalPrice(totalAmount) {
     Console.print('\n<할인 전 총주문 금액>');
-    Console.print(`${totalAmount}원`);
+    Console.print(`${totalAmount.toLocaleString()}원`);
   },
 
   printGift(price) {

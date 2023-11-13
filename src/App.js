@@ -20,6 +20,7 @@ class App {
 
     totalPrice = await this.repeat(server, inputArray, order, dishes, totalPrice);
 
+  
     OutputView.printTitle(date);
 
     OutputView.printMenu(order);
