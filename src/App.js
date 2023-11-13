@@ -12,17 +12,17 @@ class App {
 
     const inputArray = await server.getOrder();
 
-    OutputView.printTitle(date);
-
     const order = server.makeOrder(inputArray);
+
+    const dishes = server.countDishes();
+
+    OutputView.printTitle(date);
 
     OutputView.printMenu(order);
 
     const totalPrice = server.getTotalPrice();
 
     OutputView.printTotalPrice(totalPrice);
-
-    const dishes = server.countDishes();
 
     const benefit = server.getBenefit(date, totalPrice, dishes);
 

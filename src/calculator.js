@@ -10,11 +10,15 @@ const calculator = {
     const dish = {
       main: 0,
       dessert: 0,
+      beverage: 0,
+      appetizer: 0,
     };
 
     orderList.forEach((order) => {
       if (order.getCategory() === 'main') dish.main += Number(order.getQuantity());
       else if (order.getCategory() === 'dessert') dish.dessert += Number(order.getQuantity());
+      else if (order.getCategory() === 'beverage') dish.beverage += Number(order.getQuantity());
+      else if (order.getCategory() === 'appetizer') dish.appetizer += Number(order.getQuantity());
     });
 
     return dish;

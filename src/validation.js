@@ -1,4 +1,5 @@
 import menu from './menu.js';
+import calculator from './calculator.js';
 
 const validate = {
   date(input) {
@@ -8,26 +9,48 @@ const validate = {
   },
 
   checkMenuName(menuName) {
-    let result = false;
+    const result = {
+      check: false,
+      category: null,
+    };
 
     Object.keys(menu).forEach((key) => {
-      if (menu[key][menuName] !== undefined) result = true;
+      if (menu[key][menuName] !== undefined) {
+        result.check = true;
+        result.category = key;
+      }
     });
 
     return result;
   },
 
+  // checkCategory(menuName) {
+  //   const result = [];
+
+  //   Object.keys(menu).forEach((key) => {
+  //     if (meny[key][menuName] !== undefined) result.push(key);
+  //   })
+
+  //   return result;
+  // }
+
   check(menuArray) {
-    const reg = /[^0-9]/;
-    const menuName = [];
+    const menuNames = [];
+    const categoryArray = [];
 
     menuArray.forEach((oneMenu) => {
       const [name, quantity] = oneMenu;
-      if (!validate.checkMenuName(name)) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
-      if (reg.test(quantity)) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
-      menuName.push(name);
+      const { check, category } = validate.checkMenuName(name);
+      if (!check) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      if (/[^0-9]/.test(quantity)) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      if (quantity < 1) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      if (!quantity) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      menuNames.push(name);
+      categoryArray.push(category);
     });
-    if (menuName.length !== new Set(menuName).size) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+
+    if (menuNames.length !== new Set(menuNames).size) throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+    if (categoryArray.every((category) => category === 'beverage')) throw new Error('[이벤트 안내] 음료만 주문 시, 주문할 수 없습니다.');
   },
 
   menu(input) {
