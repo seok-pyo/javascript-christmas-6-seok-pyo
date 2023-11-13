@@ -24,16 +24,6 @@ const validate = {
     return result;
   },
 
-  // checkCategory(menuName) {
-  //   const result = [];
-
-  //   Object.keys(menu).forEach((key) => {
-  //     if (meny[key][menuName] !== undefined) result.push(key);
-  //   })
-
-  //   return result;
-  // }
-
   check(menuArray) {
     const menuNames = [];
     const categoryArray = [];
