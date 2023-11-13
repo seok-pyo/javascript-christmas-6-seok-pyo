@@ -40,6 +40,4 @@ describe('입력값 유효성 검증 테스트', () => {
 
     expect(() => validate.menu(inputMenu)).toThrowError('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
   });
-
-  test('총주문 금액이 10,000원을 넘지 않은 경우 ')
 });
