@@ -28,7 +28,7 @@ class App {
 
     const benefit = server.getBenefit(date, totalPrice, dishes);
 
-    console.log(benefit);
+    // console.log(benefit);
 
     OutputView.printGift(benefit[3]);
 
