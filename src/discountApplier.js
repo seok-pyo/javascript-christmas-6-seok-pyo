@@ -5,7 +5,7 @@ const discount = {
   },
 
   starCheck: (day) => {
-    if (day % 7 === 3 || day === 25) return true;
+    if (day % 7 === 3 || Number(day) === 25) return true;
     return false;
   },
 

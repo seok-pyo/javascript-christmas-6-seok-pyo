@@ -20,7 +20,6 @@ class App {
 
     totalPrice = await this.repeat(server, inputArray, order, dishes, totalPrice);
 
-  
     OutputView.printTitle(date);
 
     OutputView.printMenu(order);
@@ -28,6 +27,8 @@ class App {
     OutputView.printTotalPrice(totalPrice);
 
     const benefit = server.getBenefit(date, totalPrice, dishes);
+
+    console.log(benefit);
 
     OutputView.printGift(benefit[3]);
 
