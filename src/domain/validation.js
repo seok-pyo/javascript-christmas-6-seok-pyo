@@ -1,13 +1,19 @@
 import menu from '../data/menu.js';
+import { INVALID, NOTICE, NUMBER, MENU, PATTERN, seperator } from '../constants/constants.js';
 
 const validate = {
   date(input) {
-    const reg = /[^0-9]/;
-    if (Number(input) < 1 || Number(input) > 31) throw new Error('\n[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.\n');
-    if (reg.test(input)) throw new Error('\n[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.\n');
+    if (Number(input) < NUMBER.START_DATE || Number(input) > NUMBER.END_DATE) {
+      throw new Error(INVALID.DATE);
+    }
+    if (PATTERN.NUMBER.test(input)) throw new Error(INVALID.DATE);
   },
 
-  checkMenuName(menuName) {
+  oneOrtwo(input) {
+    if (PATTERN.NUMBER.test(input)) throw new Error(INVALID.NUMBER);
+  },
+
+  categoryInclude(menuName) {
     const result = {
       check: false,
       category: null,
@@ -25,29 +31,31 @@ const validate = {
 
   check(menuArray) {
     const menuNames = [];
-    const categoryArray = [];
-    let menuQuantity = 0;
+    const menuCategory = [];
+    let menuQuantity = NUMBER.DEFAULT;
 
     menuArray.forEach((oneMenu) => {
       const [name, quantity] = oneMenu;
-      const { check, category } = validate.checkMenuName(name);
-      if (!check) throw new Error('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
-      if (/[^0-9]/.test(quantity)) throw new Error('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
-      if (quantity < 1) throw new Error('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
-      if (!quantity) throw new Error('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
+      const includeResult = validate.categoryInclude(name);
+
+      if (!includeResult.check || PATTERN.NUMBER.test(quantity) || quantity < NUMBER.TRUE) {
+        throw new Error(INVALID.ORDER);
+      }
+
       menuNames.push(name);
-      categoryArray.push(category);
+      menuCategory.push(includeResult.category);
       menuQuantity += Number(quantity);
     });
 
-    if (menuQuantity > 20) throw new Error('\n[이벤트 안내] 메뉴는 최대 20개까지만 주문할 수 있습니다.\n');
-    if (menuNames.length !== new Set(menuNames).size) throw new Error('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
-    if (categoryArray.every((category) => category === 'beverage')) throw new Error('\n[이벤트 안내] 음료만 주문 시, 주문할 수 없습니다.\n');
+    if (menuQuantity > NUMBER.LIMIT_MENU) throw new Error(NOTICE.QUANTITY);
+    if (menuNames.length !== new Set(menuNames).size) throw new Error(INVALID.ORDER);
+    if (menuCategory.every((category) => category === MENU.BEVERAGE)) throw new Error(NOTICE.MENU);
   },
 
   menu(input) {
-    const deleteSpace = /\s/g;
-    const menuArray = input.replace(deleteSpace, '').split(',').map((order) => order.split('-'));
+    const menuArray = input.replace(PATTERN.SPACE, seperator.space).split(seperator.comma)
+      .map((order) => order.split(seperator.dash));
+
     validate.check(menuArray);
 
     return menuArray;

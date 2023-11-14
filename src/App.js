@@ -3,6 +3,7 @@ import OutputView from './view/OutputView.js';
 import InputView from './view/InputView.js';
 import calculator from './domain/discountCalculator.js';
 import Order from './domain/Order.js';
+import { NUMBER } from './constants/constants.js';
 
 class App {
   async run() {
@@ -22,11 +23,11 @@ class App {
   }
 
   async repeat(server, inputArray, order, dishes, totalPrice) {
-    if (totalPrice < 10_000) {
+    if (totalPrice < NUMBER.LIMIT_PRICE) {
       OutputView.printNotice();
       const input = await InputView.askJoin();
 
-      if (input === '1') {
+      if (input === NUMBER.TRUE) {
         server.deleteOrder();
         inputArray = await server.getOrder();
         order = server.makeOrder(inputArray);

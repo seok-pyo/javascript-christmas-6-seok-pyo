@@ -1,3 +1,4 @@
+import { NOTICE, TITLE } from '../constants/constants.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const OutputView = {
@@ -18,25 +19,25 @@ const OutputView = {
   },
 
   printMenu(menu) {
-    Console.print('\n<주문 메뉴>');
+    Console.print(TITLE.MENU);
     menu.forEach((order) => Console.print(`${order.getName()} ${order.getQuantity()}개`));
   },
 
   printTotalPrice(totalAmount) {
-    Console.print('\n<할인 전 총주문 금액>');
+    Console.print(TITLE.TOTAL_PRICE);
     Console.print(`${totalAmount.toLocaleString()}원`);
   },
 
   printGift(benefit) {
     const giftPrice = benefit[3];
-    Console.print('\n<증정 메뉴>');
+    Console.print(TITLE.GIFT);
     if (giftPrice !== 0) Console.print('샴페인 1개');
     else Console.print('없음');
   },
 
   printBenefit(total) {
     const [dDay, weekDiscount, special, giftEvent, weekend] = total;
-    Console.print('\n<혜택 내역>');
+    Console.print(TITLE.BENEFIT);
     if (!dDay && !weekDiscount && !special && !giftEvent) Console.print('없음');
 
     if (dDay) Console.print(`크리스마스 디데이 할인: -${dDay.toLocaleString()}원`);
@@ -49,23 +50,23 @@ const OutputView = {
   },
 
   printTotalBenefit(benefit) {
-    Console.print('\n<총혜택 금액>');
+    Console.print(TITLE.TOTAL_BENEFIT);
     if (benefit) Console.print(`-${benefit.toLocaleString()}원`);
     else Console.print('0원');
   },
 
   printFinalPrice(result) {
-    Console.print('\n<할인 후 예상 결제 금액>');
+    Console.print(TITLE.FINAL_PRICE);
     Console.print(`${result.toLocaleString()}원`);
   },
 
   printBadge(badge) {
-    Console.print('\n<12월 이벤트 배지>');
+    Console.print(TITLE.BADGE);
     Console.print(badge);
   },
 
   printNotice() {
-    Console.print('\n[이벤트 안내] 10,000원 이상부터 이벤트가 적용됩니다.\n');
+    Console.print(NOTICE.PRICE);
   },
 };
 

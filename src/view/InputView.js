@@ -1,4 +1,4 @@
-import { MESSEAGE } from '../constants/constants.js';
+import { MESSEAGE, NOTICE } from '../constants/constants.js';
 import validate from '../domain/validation.js';
 import { Console } from '@woowacourse/mission-utils';
 
@@ -32,7 +32,7 @@ const InputView = {
   },
 
   async askJoin() {
-    const input = await Console.readLineAsync('다시 입력하시려면 1을 그대로 진행하시려면 2를 눌러주세요.\n');
+    const input = await Console.readLineAsync(NOTICE.JOIN);
     return input;
   },
 };
