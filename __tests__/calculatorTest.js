@@ -1,5 +1,5 @@
-import calculator from '../src/calculator.js';
-import Order from '../src/Order.js';
+import calculator from '../src/domain/discountCalculator.js';
+import Order from '../src/domain/Order.js';
 
 describe('calculator 테스트', () => {
   let orderList;

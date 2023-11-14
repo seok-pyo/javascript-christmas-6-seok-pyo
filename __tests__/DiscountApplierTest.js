@@ -1,4 +1,4 @@
-import discount from '../src/discountApplier.js';
+import discount from '../src/domain/discountApplier.js';
 
 describe('날짜에 적용되는 할인 케이스를 확인한다', () => {
   test.each([

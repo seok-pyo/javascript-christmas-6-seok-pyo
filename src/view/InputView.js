@@ -1,5 +1,5 @@
-import { MESSEAGE } from './constants.js';
-import validate from './validation.js';
+import { MESSEAGE } from '../constants/constants.js';
+import validate from '../domain/validation.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const InputView = {

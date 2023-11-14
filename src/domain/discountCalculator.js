@@ -1,5 +1,5 @@
 import discount from './discountApplier.js';
-import { BADGE } from './constants.js';
+import { BADGE } from '../constants/constants.js';
 
 const calculator = {
   totalPrice(orderList) {

@@ -1,8 +1,8 @@
-import Server from './Server.js';
-import OutputView from './OutputView.js';
-import InputView from './InputView.js';
-import calculator from './calculator.js';
-import Order from './Order.js';
+import Server from './domain/Server.js';
+import OutputView from './view/OutputView.js';
+import InputView from './view/InputView.js';
+import calculator from './domain/discountCalculator.js';
+import Order from './domain/Order.js';
 
 class App {
   async run() {

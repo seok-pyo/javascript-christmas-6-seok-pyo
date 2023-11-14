@@ -1,5 +1,4 @@
-import menu from './menu.js';
-import calculator from './calculator.js';
+import menu from '../data/menu.js';
 
 const validate = {
   date(input) {
