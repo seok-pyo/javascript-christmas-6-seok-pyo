@@ -16,9 +16,9 @@ const calculator = {
 
     orderList.forEach((order) => {
       if (order.getCategory() === 'main') dish.main += Number(order.getQuantity());
-      else if (order.getCategory() === 'dessert') dish.dessert += Number(order.getQuantity());
-      else if (order.getCategory() === 'beverage') dish.beverage += Number(order.getQuantity());
-      else if (order.getCategory() === 'appetizer') dish.appetizer += Number(order.getQuantity());
+      if (order.getCategory() === 'dessert') dish.dessert += Number(order.getQuantity());
+      if (order.getCategory() === 'beverage') dish.beverage += Number(order.getQuantity());
+      if (order.getCategory() === 'appetizer') dish.appetizer += Number(order.getQuantity());
     });
 
     return dish;
@@ -41,13 +41,11 @@ const calculator = {
   },
 
   totalBenefit(benefitList) {
-    console.log(benefitList, 'total');
-    return benefitList.slice(NUMBER.DEFAULT, NUMBER.BENEFIT_BOUDARY)
+    return benefitList.slice(NUMBER.DEFAULT, NUMBER.BENEFIT_BOUDARY + NUMBER.TRUE)
       .reduce((totalBenefit, benefit) => totalBenefit + benefit, NUMBER.DEFAULT);
   },
 
   finalPrice(totalPrice, benefitList) {
-    console.log(benefitList, 'final');
     const discountAmount = benefitList.slice(NUMBER.DEFAULT, NUMBER.BENEFIT_BOUDARY)
       .reduce((amount, benefit) => amount + benefit, NUMBER.DEFAULT);
     return totalPrice - discountAmount;
