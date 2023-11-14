@@ -1,25 +1,43 @@
-import Food from './Food.js';
+import menu from './menu.js';
 
-class Order extends Food {
+class Order {
+  #name;
+
+  #category;
+
+  #price;
+
+  #quantity;
+
   constructor(name, quantity) {
-    super(name);
-    this.quantity = quantity;
+    this.#name = name;
+    this.#quantity = quantity;
+    this.#setOrder();
+  }
+
+  #setOrder() {
+    Object.keys(menu).forEach((category) => {
+      if (menu[category][this.#name] !== undefined) {
+        this.#category = category;
+        this.#price = menu[category][this.#name];
+      }
+    });
   }
 
   getName() {
-    return super.getName();
+    return this.#name;
   }
 
   getPrice() {
-    return (super.getPrice() * this.quantity);
+    return (this.#price * this.#quantity);
   }
 
   getCategory() {
-    return super.getCategory();
+    return this.#category;
   }
 
   getQuantity() {
-    return this.quantity;
+    return this.#quantity;
   }
 }
 
