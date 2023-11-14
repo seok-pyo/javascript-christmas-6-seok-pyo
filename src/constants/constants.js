@@ -57,8 +57,44 @@ const TITLE = {
   BENEFIT: '\n<혜택 내역>',
   TOTAL_BENEFIT: '\n<총혜택 금액>',
   FINAL_PRICE: '\n<할인 후 예상 결제 금액>',
-  BADGE: '\n<12월 이벤트 배지>'
+  BADGE: '\n<12월 이벤트 배지>',
+  START(day) {
+    return `12월 ${Number(day)}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`;
+  },
+};
 
-}
+const AMOUNT = {
+  // FINAL_PRICE(result) {
+  //   return `${result.toLocaleString()}원`;
+  // },
+  // BENEFIT(benefit) {
+  //   return `-${benefit.toLocaleString()}원`;
+  // },
+  DISCOUNT_MONEY(result) {
+    return `-${result.toLocaleString()}원`;
+  },
+  MONEY(result) {
+    return `${result.toLocaleString()}원`;
+  },
+  SPECIAL(discount) {
+    return `특별 할인: -${discount.toLocaleString()}원`;
+  },
+  GIFT(event) {
+    return `증정 이벤트: -${event.toLocaleString()}원`;
+  },
+  WEEKEND(discount) {
+    return `주말 할인: -${discount.toLocaleString()}원`;
+  },
+  WEEKDAY(discount) {
+    return `평일 할인: -${discount.toLocaleString()}원`;
+  },
+  D_DAY(discount) {
+    return `크리스마스 디데이 할인: -${discount.toLocaleString()}원`;
+  },
+  NOTHING: '없음',
+  TOTAL_PRICE(result) {
+    return `${result.toLocaleString()}원`;
+  },
+};
 
-export { BADGE, MESSEAGE, INVALID, NOTICE, NUMBER, MENU, PATTERN, seperator, TITLE };
+export { BADGE, MESSEAGE, INVALID, NOTICE, NUMBER, MENU, PATTERN, seperator, TITLE, AMOUNT };
