@@ -1,4 +1,4 @@
-import { NOTICE, TITLE, AMOUNT } from '../constants/constants.js';
+import { NOTICE, TITLE, AMOUNT, UNIT, NUMBER } from '../constants/constants.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const OutputView = {
@@ -20,18 +20,18 @@ const OutputView = {
 
   printMenu(menu) {
     Console.print(TITLE.MENU);
-    menu.forEach((order) => Console.print(`${order.getName()} ${Number(order.getQuantity())}개`));
+    menu.forEach((order) => Console.print(`${order.getName()} ${Number(order.getQuantity())}${UNIT.COUNT}`));
   },
 
   printTotalPrice(totalAmount) {
     Console.print(TITLE.TOTAL_PRICE);
-    Console.print(`${AMOUNT.MONEY(totalAmount)}`);
+    Console.print(AMOUNT.MONEY(totalAmount));
   },
 
   printGift(benefit) {
-    const giftPrice = benefit[3];
+    const giftPrice = benefit[NUMBER.BENEFIT_BOUDARY];
     Console.print(TITLE.GIFT);
-    if (giftPrice !== 0) Console.print('샴페인 1개');
+    if (giftPrice !== NUMBER.DEFAULT) Console.print(NOTICE.GIFT);
     else Console.print(AMOUNT.NOTHING);
   },
 
@@ -40,13 +40,13 @@ const OutputView = {
     Console.print(TITLE.BENEFIT);
     if (!dDay && !weekDiscount && !special && !giftEvent) Console.print(AMOUNT.NOTHING);
 
-    if (dDay) Console.print(`크리스마스 디데이 할인: ${AMOUNT.DISCOUNT_MONEY(dDay)}`);
+    if (dDay) Console.print(`${TITLE.D_DAY}${AMOUNT.DISCOUNT_MONEY(dDay)}`);
 
-    if (weekend && weekDiscount !== 0) Console.print(`주말 할인: ${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
-    if (!weekend && weekDiscount !== 0) Console.print(`평일 할인: ${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
+    if (weekend && weekDiscount !== 0) Console.print(`${TITLE.WEEKEND}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
+    if (!weekend && weekDiscount !== 0) Console.print(`${TITLE.WEEKDAY}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
 
-    if (special) Console.print(`특별 할인: ${AMOUNT.DISCOUNT_MONEY(special)}`);
-    if (giftEvent) Console.print(`증정 이벤트: ${AMOUNT.DISCOUNT_MONEY(giftEvent)}`);
+    if (special) Console.print(`${TITLE.SPECIAL}${AMOUNT.DISCOUNT_MONEY(special)}`);
+    if (giftEvent) Console.print(`${TITLE.GIFT_EVENT}${AMOUNT.DISCOUNT_MONEY(giftEvent)}`);
   },
 
   printTotalBenefit(benefit) {
@@ -57,7 +57,7 @@ const OutputView = {
 
   printFinalPrice(result) {
     Console.print(TITLE.FINAL_PRICE);
-    Console.print(`${AMOUNT.MONEY(result)}`);
+    Console.print(AMOUNT.MONEY(result));
   },
 
   printBadge(badge) {

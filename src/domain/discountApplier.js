@@ -1,31 +1,35 @@
+import { NUMBER, PRICE } from '../constants/constants.js';
+
 const discount = {
   weekendCheck: (day) => {
-    if (day % 7 === 1 || day % 7 === 2) return true;
+    if (day % NUMBER.WEEK === NUMBER.TRUE || day % NUMBER.WEEK === NUMBER.FALSE) return true;
     return false;
   },
 
   starCheck: (day) => {
-    if (day % 7 === 3 || Number(day) === 25) return true;
+    if (day % NUMBER.WEEK === NUMBER.THREE || Number(day) === NUMBER.X_MAS) return true;
     return false;
   },
 
   dDayCheck: (day) => {
-    if (day <= 25 && day >= 1) return true;
+    if (day <= NUMBER.X_MAS && day >= NUMBER.TRUE) return true;
     return false;
   },
 
   applier: (day, totalAmount) => {
     const appliedResult = {
-      dDay: 0,
+      dDay: NUMBER.DEFAULT,
       weekend: false,
-      special: 0,
-      giftEvent: 0,
+      special: NUMBER.DEFAULT,
+      giftEvent: NUMBER.DEFAULT,
     };
 
     if (discount.weekendCheck(day)) appliedResult.weekend = true;
-    if (discount.starCheck(day)) appliedResult.special = 1000;
-    if (discount.dDayCheck(day)) appliedResult.dDay = 1000 + ((day - 1) * 100);
-    if (totalAmount >= 120_000) appliedResult.giftEvent = 25_000;
+    if (discount.starCheck(day)) appliedResult.special = PRICE.SPECIAL;
+    if (discount.dDayCheck(day)) {
+      appliedResult.dDay = PRICE.SPECIAL + ((day - NUMBER.ONE) * PRICE.D_DAY_MILEAGE);
+    }
+    if (totalAmount >= PRICE.GIFT_BOUNDARY) appliedResult.giftEvent = PRICE.GIFT;
 
     return appliedResult;
   },

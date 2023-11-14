@@ -1,17 +1,17 @@
 import discount from './discountApplier.js';
-import { BADGE } from '../constants/constants.js';
+import { BADGE, PRICE, NUMBER, AMOUNT } from '../constants/constants.js';
 
 const calculator = {
   totalPrice(orderList) {
-    return orderList.reduce((price, order) => price + order.getPrice(), 0);
+    return orderList.reduce((price, order) => price + order.getPrice(), NUMBER.DEFAULT);
   },
 
   countDishes(orderList) {
     const dish = {
-      main: 0,
-      dessert: 0,
-      beverage: 0,
-      appetizer: 0,
+      main: NUMBER.DEFAULT,
+      dessert: NUMBER.DEFAULT,
+      beverage: NUMBER.DEFAULT,
+      appetizer: NUMBER.DEFAULT,
     };
 
     orderList.forEach((order) => {
@@ -32,28 +32,32 @@ const calculator = {
       giftEvent,
     } = discount.applier(day, totalPrice);
 
-    let weekDiscount = 0;
+    let weekDiscount = NUMBER.DEFAULT;
 
-    if (weekend) weekDiscount += dish.main * 2023;
-    else weekDiscount += dish.dessert * 2023;
+    if (weekend) weekDiscount += dish.main * NUMBER.THIS_YEAR;
+    else weekDiscount += dish.dessert * NUMBER.THIS_YEAR;
 
     return [dDay, weekDiscount, special, giftEvent, weekend];
   },
 
   totalBenefit(benefitList) {
-    return benefitList.slice(0, 4).reduce((totalBenefit, benefit) => totalBenefit + benefit, 0);
+    console.log(benefitList, 'total');
+    return benefitList.slice(NUMBER.DEFAULT, NUMBER.BENEFIT_BOUDARY)
+      .reduce((totalBenefit, benefit) => totalBenefit + benefit, NUMBER.DEFAULT);
   },
 
   finalPrice(totalPrice, benefitList) {
-    const discountAmount = benefitList.slice(0, 3).reduce((amount, benefit) => amount + benefit, 0);
+    console.log(benefitList, 'final');
+    const discountAmount = benefitList.slice(NUMBER.DEFAULT, NUMBER.BENEFIT_BOUDARY)
+      .reduce((amount, benefit) => amount + benefit, NUMBER.DEFAULT);
     return totalPrice - discountAmount;
   },
 
   badge(totalBenefit) {
-    if (totalBenefit < 5000) return '없음';
-    if (totalBenefit >= 20000) return BADGE.SANTA;
-    if (totalBenefit >= 10000) return BADGE.TREE;
-    if (totalBenefit >= 5000) return BADGE.STAR;
+    if (totalBenefit < PRICE.STAR) return AMOUNT.NOTHING;
+    if (totalBenefit >= PRICE.SANTA) return BADGE.SANTA;
+    if (totalBenefit >= PRICE.TREE) return BADGE.TREE;
+    if (totalBenefit >= PRICE.STAR) return BADGE.STAR;
   },
 };
 
