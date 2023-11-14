@@ -1,14 +1,25 @@
 import { Console } from '@woowacourse/mission-utils';
 
 const OutputView = {
+  printAll(result) {
+    const [date, order, totalPrice, benefit, totalBenefit, finalPrice, badge] = result;
+    OutputView.printTitle(date);
+    OutputView.printMenu(order);
+    OutputView.printTotalPrice(totalPrice);
+    OutputView.printGift(benefit);
+    OutputView.printBenefit(benefit);
+    OutputView.printTotalBenefit(totalBenefit);
+    OutputView.printFinalPrice(finalPrice);
+    OutputView.printBadge(badge);
+  },
+
   printTitle(day) {
     Console.print(`12월 ${day}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`);
   },
 
   printMenu(menu) {
     Console.print('\n<주문 메뉴>');
-    menu.forEach((order) => Console.print(`${order.getName()} ${order.getQuantity()
-    }개`));
+    menu.forEach((order) => Console.print(`${order.getName()} ${order.getQuantity()}개`));
   },
 
   printTotalPrice(totalAmount) {
@@ -16,9 +27,10 @@ const OutputView = {
     Console.print(`${totalAmount.toLocaleString()}원`);
   },
 
-  printGift(price) {
+  printGift(benefit) {
+    const giftPrice = benefit[3];
     Console.print('\n<증정 메뉴>');
-    if (price !== 0) Console.print('샴페인 1개');
+    if (giftPrice !== 0) Console.print('샴페인 1개');
     else Console.print('없음');
   },
 

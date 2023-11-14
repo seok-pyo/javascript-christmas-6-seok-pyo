@@ -13,15 +13,12 @@ class App {
     const dishes = server.countDishes();
     let totalPrice = server.getTotalPrice();
     totalPrice = await this.repeat(server, inputArray, order, dishes, totalPrice);
-    OutputView.printTitle(date);
-    OutputView.printMenu(order);
-    OutputView.printTotalPrice(totalPrice);
     const benefit = server.getBenefit(date, totalPrice, dishes);
-    OutputView.printGift(benefit[3]);
-    OutputView.printBenefit(benefit);
-    OutputView.printTotalBenefit(server.getTotalBenefit(benefit));
-    OutputView.printFinalPrice(server.getFinalPrice(totalPrice, benefit));
-    OutputView.printBadge(server.getBadge(server.getTotalBenefit(benefit)));
+    const totalBenefit = server.getTotalBenefit(benefit);
+    const finalPrice = server.getFinalPrice(totalPrice, benefit);
+    const badge = server.getBadge(totalBenefit);
+    const result = [date, order, totalPrice, benefit, totalBenefit, finalPrice, badge];
+    OutputView.printAll(result);
   }
 
   async repeat(server, inputArray, order, dishes, totalPrice) {
