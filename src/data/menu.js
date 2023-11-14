@@ -1,3 +1,8 @@
+const doFreeze = (obj) => {
+  Object.freeze(obj);
+  Object.keys(obj).forEach((key) => doFreeze(obj[key]));
+};
+
 const menu = {
   appetizer: {
     양송이스프: 6_000,
@@ -20,5 +25,7 @@ const menu = {
     샴페인: 25_000,
   },
 };
+
+doFreeze(menu);
 
 export default menu;
