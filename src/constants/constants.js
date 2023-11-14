@@ -8,7 +8,7 @@ const MENU = {
   APPETIZER: 'appetizer',
   MAIN: 'main',
   BEVERAGE: 'beverage',
-  DESSERR: 'dessert',
+  DESSERT: 'dessert',
 };
 
 const UNIT = {

@@ -1,5 +1,5 @@
 import discount from './discountApplier.js';
-import { BADGE, PRICE, NUMBER, AMOUNT } from '../constants/constants.js';
+import { BADGE, PRICE, NUMBER, AMOUNT, MENU } from '../constants/constants.js';
 
 const calculator = {
   totalPrice(orderList) {
@@ -15,10 +15,10 @@ const calculator = {
     };
 
     orderList.forEach((order) => {
-      if (order.getCategory() === 'main') dish.main += Number(order.getQuantity());
-      if (order.getCategory() === 'dessert') dish.dessert += Number(order.getQuantity());
-      if (order.getCategory() === 'beverage') dish.beverage += Number(order.getQuantity());
-      if (order.getCategory() === 'appetizer') dish.appetizer += Number(order.getQuantity());
+      if (order.getCategory() === MENU.MAIN) dish.main += Number(order.getQuantity());
+      if (order.getCategory() === MENU.DESSERT) dish.dessert += Number(order.getQuantity());
+      if (order.getCategory() === MENU.BEVERAGE) dish.beverage += Number(order.getQuantity());
+      if (order.getCategory() === MENU.APPETIZER) dish.appetizer += Number(order.getQuantity());
     });
 
     return dish;
