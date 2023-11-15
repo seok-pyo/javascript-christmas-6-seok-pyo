@@ -8,24 +8,20 @@ import { NUMBER } from './constants/constants.js';
 class App {
   async run() {
     const server = new Server(calculator, Order);
-
     const date = await InputView.readDate();
     const inputArray = await InputView.readMenu();
-
     server.makeOrder(inputArray);
-
     server.countDishes();
     server.getTotalPrice();
 
     await this.repeat(server);
+
     server.getBenefit(date);
     server.getTotalBenefit();
     server.getFinalPrice();
-
     server.getBadge();
 
-    const result = [date, ...server.returnResult()];
-    OutputView.printAll(result);
+    OutputView.printAll([date, ...server.returnResult()]);
   }
 
   async repeat(server) {
