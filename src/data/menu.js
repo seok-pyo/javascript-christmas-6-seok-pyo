@@ -5,7 +5,7 @@ const doFreeze = (obj) => {
 
 const menu = {
   appetizer: {
-    양송이스프: 6_000,
+    양송이수프: 6_000,
     타파스: 5_500,
     시저샐러드: 8_000,
   },
