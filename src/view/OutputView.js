@@ -42,8 +42,8 @@ const OutputView = {
 
     if (dDay) Console.print(`${TITLE.D_DAY}${AMOUNT.DISCOUNT_MONEY(dDay)}`);
 
-    if (weekend && weekDiscount !== 0) Console.print(`${TITLE.WEEKEND}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
-    if (!weekend && weekDiscount !== 0) Console.print(`${TITLE.WEEKDAY}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
+    if (weekend && weekDiscount !== NUMBER.DEFAULT) Console.print(`${TITLE.WEEKEND}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
+    if (!weekend && weekDiscount !== NUMBER.DEFAULT) Console.print(`${TITLE.WEEKDAY}${AMOUNT.DISCOUNT_MONEY(weekDiscount)}`);
 
     if (special) Console.print(`${TITLE.SPECIAL}${AMOUNT.DISCOUNT_MONEY(special)}`);
     if (giftEvent) Console.print(`${TITLE.GIFT_EVENT}${AMOUNT.DISCOUNT_MONEY(giftEvent)}`);

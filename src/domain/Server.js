@@ -1,3 +1,5 @@
+import { NUMBER } from '../constants/constants.js';
+
 class Server {
   #order;
 
@@ -24,7 +26,7 @@ class Server {
   }
 
   deleteOrder() {
-    this.#order.length = 0;
+    this.#order.length = NUMBER.DEFAULT;
   }
 
   makeOrder(input) {
