@@ -32,7 +32,7 @@ describe('입력값 유효성 검증 테스트', () => {
   });
 
   test.each([[['크리스맛스파스타', '1']], [['티본슷테이크', '1']], [['래드와인', '2']]])('메뉴 입력이 메뉴판에 없는 경우 예외가 발생한다.', (input) => {
-    expect(() => validate.check(input)).toThrowError('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
+    expect(() => validate.menuNameCheck(input)).toThrowError('\n[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n');
   });
 
   test('메뉴 개수가 1 이상이 아닌 경우 예외가 발생한다.', () => {

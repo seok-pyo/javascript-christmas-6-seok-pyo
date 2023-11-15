@@ -13,9 +13,7 @@ class App {
     server.makeOrder(inputArray);
     server.countDishes();
     server.getTotalPrice();
-
     await this.repeat(server);
-
     server.getBenefit(date);
     server.getTotalBenefit();
     server.getFinalPrice();

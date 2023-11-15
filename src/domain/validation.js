@@ -29,11 +29,7 @@ const validate = {
     return result;
   },
 
-  check(menuArray) {
-    const menuNames = [];
-    const menuCategory = [];
-    let menuQuantity = NUMBER.DEFAULT;
-
+  menuNameCheck(menuArray, menuNames) {
     menuArray.forEach((oneMenu) => {
       const [name, quantity] = oneMenu;
       const includeResult = validate.categoryInclude(name);
@@ -43,20 +39,33 @@ const validate = {
       }
 
       menuNames.push(name);
+    });
+
+    if (menuNames.length !== new Set(menuNames).size) throw new Error(INVALID.ORDER);
+  },
+
+  menuPropertyCheck(menuArray, menuCategory) {
+    let menuQuantity = NUMBER.DEFAULT;
+
+    menuArray.forEach((oneMenu) => {
+      const [name, quantity] = oneMenu;
+      const includeResult = validate.categoryInclude(name);
+
       menuCategory.push(includeResult.category);
       menuQuantity += Number(quantity);
     });
 
     if (menuQuantity > NUMBER.LIMIT_MENU) throw new Error(NOTICE.QUANTITY);
-    if (menuNames.length !== new Set(menuNames).size) throw new Error(INVALID.ORDER);
     if (menuCategory.every((category) => category === MENU.BEVERAGE)) throw new Error(NOTICE.MENU);
   },
 
   menu(input) {
+    if (!input) throw new Error(INVALID.ORDER);
     const menuArray = input.replace(PATTERN.SPACE, seperator.space).split(seperator.comma)
       .map((order) => order.split(seperator.dash));
 
-    validate.check(menuArray);
+    validate.menuNameCheck(menuArray, []);
+    validate.menuPropertyCheck(menuArray, []);
 
     return menuArray;
   },
