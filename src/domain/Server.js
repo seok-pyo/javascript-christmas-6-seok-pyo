@@ -1,30 +1,26 @@
 class Server {
   #order;
 
-  #date;
-
   #calculator;
-
-  #inputView;
 
   #Order;
 
-  constructor(InputView, calculator, Order) {
+  #totalPrice;
+
+  #dishes;
+
+  #benefit;
+
+  #totalBenefit;
+
+  #finalPrice;
+
+  #badge;
+
+  constructor(calculator, Order) {
     this.#order = [];
-    this.#date = null;
-    this.#inputView = InputView;
     this.#calculator = calculator;
     this.#Order = Order;
-  }
-
-  async getDate() {
-    this.#date = await this.#inputView.readDate();
-    return this.#date;
-  }
-
-  async getOrder() {
-    const inputOrder = await this.#inputView.readMenu();
-    return inputOrder;
   }
 
   deleteOrder() {
@@ -40,28 +36,42 @@ class Server {
     return this.#order;
   }
 
-  getTotalPrice() {
-    return this.#calculator.totalPrice(this.#order);
-  }
-
   countDishes() {
-    return this.#calculator.countDishes(this.#order);
+    this.#dishes = this.#calculator.countDishes(this.#order);
   }
 
-  getBenefit(date, totalPrice, dishes) {
-    return this.#calculator.benefit(date, totalPrice, dishes);
+  getTotalPrice() {
+    this.#totalPrice = this.#calculator.totalPrice(this.#order);
   }
 
-  getTotalBenefit(benefit) {
-    return this.#calculator.totalBenefit(benefit);
+  returnTotalPrice() {
+    return this.#totalPrice;
   }
 
-  getFinalPrice(totalPrice, benefit) {
-    return this.#calculator.finalPrice(totalPrice, benefit);
+  getBenefit(date) {
+    this.#benefit = this.#calculator.benefit(date, this.#totalPrice, this.#dishes);
   }
 
-  getBadge(totalBenefit) {
-    return this.#calculator.badge(totalBenefit);
+  getTotalBenefit() {
+    this.#totalBenefit = this.#calculator.totalBenefit(this.#benefit);
+  }
+
+  getFinalPrice() {
+    this.#finalPrice = this.#calculator.finalPrice(this.#totalPrice, this.#benefit);
+  }
+
+  getBadge() {
+    this.#badge = this.#calculator.badge(this.#totalBenefit);
+  }
+
+  returnResult() {
+    return [
+      this.#order,
+      this.#totalPrice,
+      this.#benefit,
+      this.#totalBenefit,
+      this.#finalPrice,
+      this.#badge];
   }
 }
 
